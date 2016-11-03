@@ -21,7 +21,7 @@ sess = tf.Session()
 init = tf.initialize_all_variables()
 sess.run(init)
 
-for i in range(10):
+for i in range(100):
     batch_xs, batch_ys = mnist.train.next_batch(100)
     sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
 
@@ -32,6 +32,6 @@ for i in range(10):
 
 # prediction
 batch_xs, batch_ys = mnist.train.next_batch(5)
-pred_rslt = sess.run(y_, feed_dict={x: batch_xs, y_: batch_ys})
+pred_rslt = sess.run(tf.argmax(y, 1), feed_dict={x: batch_xs})
 
 print(pred_rslt)
