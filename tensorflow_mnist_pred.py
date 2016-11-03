@@ -21,7 +21,7 @@ sess = tf.Session()
 init = tf.initialize_all_variables()
 sess.run(init)
 
-for i in range(1000):
+for i in range(10):
     batch_xs, batch_ys = mnist.train.next_batch(100)
     sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
 
@@ -30,3 +30,8 @@ for i in range(1000):
 
     print sess.run(accuracy, feed_dict={x: mnist.test.images,y_:mnist.test.labels})
 
+# prediction
+batch_xs, batch_ys = mnist.train.next_batch(5)
+pred_rslt = sess.run(y_, feed_dict={x: batch_xs, y_: batch_ys})
+
+print(pred_rslt)
