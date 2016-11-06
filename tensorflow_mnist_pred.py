@@ -22,9 +22,10 @@ init = tf.initialize_all_variables()
 sess.run(init)
 
 for i in range(100):
-    batch_xs, batch_ys = mnist.train.next_batch(100)
+    batch_xs, batch_ys = mnist.train.next_batch(1)
     sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
 
+    print batch_xs
     correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
 
